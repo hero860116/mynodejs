@@ -12,9 +12,6 @@ exports.execute = function (req, res) {
     var method = pathName.substring(last + 1);
     var user = require(basePath +'/control' + moduleName);
 
-    console.log(user[method].toString());
-
-
     /*
      * 函数调用参数解析模块
      * 对象自动匹配、参数名匹配

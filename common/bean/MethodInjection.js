@@ -6,6 +6,8 @@ MethodInjection.prototype.setURLParse = function(urlParse) {
 }
 
 MethodInjection.prototype.injection = function(method) {
+    var s = new Date().getTime();
+
     var urlParam = this.urlParse.param;
 
     //参数列表解析
@@ -75,6 +77,10 @@ MethodInjection.prototype.injection = function(method) {
         parameters.splice(index, 1, remainParam);
         //parameters.splice
     }
+
+    var e = new Date().getTime();
+
+    console.log("const time:" + (e-s) + "ms");
 
     return method.apply(this, parameters);
 

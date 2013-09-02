@@ -1,4 +1,4 @@
-exports.sayHello = function (query) { 
+exports.sayHello = function ( user) {
   console.log(query); 
 
    var user = new Object();
@@ -8,14 +8,13 @@ exports.sayHello = function (query) {
   return user;
 }; 
 
-exports.list = function (query) { 
-  console.log(query); 
+exports.list = function (name , age) {
   
    var users = new Array();
 
    var user = new Object();
-   user.name = 'lwl'
-   user.age = 27;
+   user.name = name
+   user.age = age;
 
    users.push(user);
 

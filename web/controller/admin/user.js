@@ -11,7 +11,7 @@ exports.list = function (name , age) {
        var users = new Array();
 
    var user = new Object();
-   user.name = name
+   user.name = "李伟林"
    user.age = age;
 
    users.push(user);

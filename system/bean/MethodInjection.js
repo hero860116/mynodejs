@@ -1,4 +1,4 @@
-function  MethodInjection(req) {
+function  MethodInjection() {
 }
 
 MethodInjection.prototype.setURLParse = function(urlParse) {
@@ -88,8 +88,8 @@ MethodInjection.prototype.injection = function(method) {
 
 //模糊匹配
 var matchParam = function(srcParamName, toParamName) {
-      var exSrcParamName = srcParamName.replace("_", "");
-      var exToParamName = toParamName.replace("_", "");
+      var exSrcParamName = srcParamName.replace(/\_/g, "");
+      var exToParamName = toParamName.replace(/\_/g, "");
 
       exSrcParamName = exSrcParamName.toLowerCase();
       exToParamName =  toParamName.toLowerCase();
@@ -97,4 +97,4 @@ var matchParam = function(srcParamName, toParamName) {
       return  exSrcParamName ===  exToParamName;
 }
 
-module.exports = MethodInjection;
+module.exports = new MethodInjection();

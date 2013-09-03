@@ -1,3 +1,6 @@
+//定义项目根目录
+global.$basePath = __dirname;
+
 //执行初始化
 require('./system/bean/Initialization').init();
 
@@ -5,20 +8,15 @@ var  http = require('http');
 
 http.createServer( function (req, res) {
 
-    $urlParse.parse(req, res);
+    //解析url，得到urlParse对象
+    var urlParse = new $URLParse();
+    urlParse.parse(req, res);
 
-    //--todo  过滤器让静态文件走静态方式
-    if (req.url === "/favicon.ico") {
-        res.writeHead( 200 , {'Content-Type': 'text/html'});
+    //将解析得到的对象放入函数注入器中
+    $methodInjection.setURLParse(urlParse);
 
-        return;
-    }
-
-    //动态服务解析
-    require($basePath + '/system/pipeline/executeValve').execute(req, res);
-
-    //结果解析
-    require($basePath + '/system/pipeline/resultValve').execute(req, res);
+    //执行解析函数
+    $pipeline.execute(urlParse);
 
 }).listen(3000);
 console.log("HTTP server is listening at port 3000.");

@@ -25,4 +25,12 @@ URLParsing.prototype.parse = function(req, res) {
     this.param =  parseUrl.query;
 }
 
+URLParsing.prototype.getTargetObject = function() {
+   return require($basePath + "/web/controller/" + this.module + "/" + this.target);
+}
+
+URLParsing.prototype.getMethod = function() {
+    return require($basePath + "/web/controller/" + this.module + "/" + this.target)[this.method];
+}
+
 module.exports = URLParsing;

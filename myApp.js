@@ -1,13 +1,5 @@
-global.basePath = "D:/work/idea/mynodejs";
-
-//定义全局url解析器
-var URLParse = require( basePath + "/common/bean/URLParse");
-global.$urlParse = new URLParse();
-
-//定义全局函数注入器
-var MethodInjection = require(basePath + "/common/bean/MethodInjection");
-global.$methodInjection = new MethodInjection();
-$methodInjection.setURLParse($urlParse);
+//执行初始化
+require('./system/bean/Initialization').init();
 
 var  http = require('http');
 
@@ -23,10 +15,10 @@ http.createServer( function (req, res) {
     }
 
     //动态服务解析
-    require(basePath + '/pipeline/system/executeValve').execute(req, res);
+    require($basePath + '/system/pipeline/executeValve').execute(req, res);
 
     //结果解析
-    require(basePath + '/pipeline/system/resultValve').execute(req, res);
+    require($basePath + '/system/pipeline/resultValve').execute(req, res);
 
 }).listen(3000);
 console.log("HTTP server is listening at port 3000.");

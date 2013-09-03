@@ -23,10 +23,10 @@ http.createServer( function (req, res) {
     }
 
     //动态服务解析
-    require(basePath + '/pipeline/executeValve').execute(req, res);
+    require(basePath + '/pipeline/system/executeValve').execute(req, res);
 
     //结果解析
-    require(basePath + '/pipeline/resultValve').execute(req, res);
+    require(basePath + '/pipeline/system/resultValve').execute(req, res);
 
 }).listen(3000);
 console.log("HTTP server is listening at port 3000.");
